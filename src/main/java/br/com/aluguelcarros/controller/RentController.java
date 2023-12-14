@@ -21,7 +21,7 @@ import br.com.aluguelcarros.repository.RentRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping
+@RequestMapping("/alugueis")
 public class RentController {
   @Autowired
   RentRepository rentRepository;
