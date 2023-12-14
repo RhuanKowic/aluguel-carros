@@ -33,18 +33,17 @@ public class Rent {
   private LocalDate endDate;
 
   @Column(nullable = false)
-  private double pricePerDay;
+  private double priceTotal;
 
   public Rent() {
 
   }
 
-  public Rent(Car car, Client client, LocalDate startDate, LocalDate endDate, double pricePerDay) {
+  public Rent(Car car, Client client, LocalDate startDate, LocalDate endDate) {
     this.car = car;
     this.client = client;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.pricePerDay = pricePerDay;
   }
 
   public long getId() {
@@ -83,18 +82,18 @@ public class Rent {
     this.endDate = endDate;
   }
 
-  public double getPricePerDay() {
-    return pricePerDay;
+  public double getPriceTotal() {
+    return priceTotal;
   }
 
-  public void setPricePerDay(double pricePerDay) {
-    this.pricePerDay = pricePerDay;
+  public void setPriceTotal(double priceTotal) {
+    this.priceTotal = priceTotal;
   }
 
   @Override
   public String toString() {
     return "Rent [id=" + id + ", car=" + car + ", client=" + client + ", startDate=" + startDate + ", endDate="
-        + endDate + ", pricePerDay=" + pricePerDay + "]";
+        + endDate + ", priceTotal=" + priceTotal + "]";
   }
 
 }
