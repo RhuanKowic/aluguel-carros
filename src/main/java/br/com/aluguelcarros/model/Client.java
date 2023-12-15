@@ -53,8 +53,8 @@ public class Client {
   }
 
   public void setCpf(String cpf) {
-    String newCpf = cpf.replace(".", "");
-    cpf.replace("-", "");
+    String newCpf = cpf.replaceAll("[^0-9]", "");
+    
     if(newCpf.length() == 11){
       this.cpf = cpf;
     } else {
@@ -68,10 +68,11 @@ public class Client {
   }
 
   public void setTelefone(String telefone) {
-    if(telefone != null && telefone.trim().isEmpty()){
+    String newTelefone = telefone.replaceAll("[^0-9]", "");
+    if(telefone != null && newTelefone.length() == 11){
       this.telefone = telefone;
     } else{
-      throw new IllegalArgumentException("O campo telefone não pode ser nulo ou vazio.");
+      throw new IllegalArgumentException("O campo telefone não pode ser nulo e tem que ter 11 números.");
     }
   }
 
