@@ -27,9 +27,9 @@ public class Client {
   }
 
   public Client(String name, String cpf, String telefone) {
-    this.name = name;
-    this.cpf = cpf;
-    this.telefone = telefone;
+    setName(name);
+    setCpf(cpf);
+    setTelefone(telefone);
   }
 
   public long getId() {
@@ -41,7 +41,11 @@ public class Client {
   }
 
   public void setName(String name) {
-    this.name = name;
+    if (name != null && !name.trim().isEmpty()) {
+      this.name = name;
+    } else{
+      throw new IllegalArgumentException("O campo nome não pode ser nulo ou vazio.");
+    }
   }
 
   public String getCpf() {
@@ -49,7 +53,14 @@ public class Client {
   }
 
   public void setCpf(String cpf) {
-    this.cpf = cpf;
+    String newCpf = cpf.replace(".", "");
+    cpf.replace("-", "");
+    if(newCpf.length() == 11){
+      this.cpf = cpf;
+    } else {
+      throw new IllegalArgumentException("O campo CPF tem que ter 11 números.");
+    }
+    
   }
 
   public String getTelefone() {
@@ -57,7 +68,11 @@ public class Client {
   }
 
   public void setTelefone(String telefone) {
-    this.telefone = telefone;
+    if(telefone != null && telefone.trim().isEmpty()){
+      this.telefone = telefone;
+    } else{
+      throw new IllegalArgumentException("O campo telefone não pode ser nulo ou vazio.");
+    }
   }
 
   @Override
