@@ -32,11 +32,11 @@ public class Car {
   }
 
   public Car(String model, String color, int year, String place, double pricePerDay) {
-    this.model = model;
-    this.color = color;
-    this.year = year;
-    this.place = place;
-    this.pricePerDay = pricePerDay;
+    setModel(model);
+    setColor(color);
+    setYear(year);
+    setPlace(place);
+    setPricePerDay(pricePerDay);
   }
 
   public long getId() {
@@ -48,7 +48,11 @@ public class Car {
   }
 
   public void setModel(String model) {
-    this.model = model;
+    if (model != null && !model.trim().isEmpty()) {
+      this.model = model;
+    } else {
+      throw new IllegalArgumentException("Modelo do carro não pode ser vazio ou nulo.");
+    }
   }
 
   public String getColor() {
@@ -56,7 +60,11 @@ public class Car {
   }
 
   public void setColor(String color) {
-    this.color = color;
+    if (color != null && !color.trim().isEmpty()) {
+      this.color = color;
+    } else {
+      throw new IllegalArgumentException("Cor do carro não pode ser vazio ou nulo.");
+    }
   }
 
   public int getYear() {
@@ -64,7 +72,11 @@ public class Car {
   }
 
   public void setYear(int year) {
-    this.year = year;
+    if (year > 1940 && year <= 2024) {
+      this.year = year;
+    } else {
+      throw new IllegalArgumentException("O ano do carro não pode ser menos que 1940 e maior que 2024.");
+    }
   }
 
   public String getPlace() {
@@ -72,7 +84,12 @@ public class Car {
   }
 
   public void setPlace(String place) {
-    this.place = place;
+    if (place.matches("[A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}")) {
+      this.place = place;
+    } else {
+      throw new IllegalArgumentException("A placa do carro deve seguir a norma MercoSul ou a norma antiga.");
+    }
+
   }
 
   public double getPricePerDay() {
@@ -80,7 +97,11 @@ public class Car {
   }
 
   public void setPricePerDay(double pricePerDay) {
-    this.pricePerDay = pricePerDay;
+    if (pricePerDay > 0) {
+      this.pricePerDay = pricePerDay;
+    } else {
+      throw new IllegalArgumentException("A preço do carro deve ser maior que 0.");
+    }
   }
 
   @Override
