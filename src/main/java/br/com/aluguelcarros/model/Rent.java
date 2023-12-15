@@ -1,6 +1,7 @@
 package br.com.aluguelcarros.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,10 +41,11 @@ public class Rent {
   }
 
   public Rent(Car car, Client client, LocalDate startDate, LocalDate endDate) {
-    this.car = car;
-    this.client = client;
-    this.startDate = startDate;
-    this.endDate = endDate;
+    setCar(car);
+    setClient(client);
+    setStartDate(startDate);
+    setEndDate(endDate);
+    setPriceTotal();
   }
 
   public long getId() {
@@ -86,7 +88,10 @@ public class Rent {
     return priceTotal;
   }
 
-  public void setPriceTotal(double priceTotal) {
+  public void setPriceTotal() {
+    Long days = ChronoUnit.DAYS.between(startDate, endDate);
+    double pricePerDay = car.getPricePerDay();
+    double priceTotal = (double) days * pricePerDay;
     this.priceTotal = priceTotal;
   }
 
